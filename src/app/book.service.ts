@@ -6,7 +6,7 @@ import { Book } from './book';
   providedIn: 'root'
 })
 export class BookService {
-  private baseUrl: string = "http://localhost:3000/books";
+  private baseUrl: string = "https://books-portal-be.onrender.com/books";
 
   constructor(private http: HttpClient) { }
 
