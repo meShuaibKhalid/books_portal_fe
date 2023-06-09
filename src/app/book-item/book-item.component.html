@@ -1,0 +1,49 @@
+<div class="card book-card" >
+  <img [src]="book.image" class="card-img-top" alt="Book Cover">
+  <div class="card-body">
+    <h5 class="card-title">{{book.title}}</h5>
+    <p class="card-text">{{book.author}}</p>
+    <p class="card-text">Published: {{book.publish_date}}</p>
+    <p class="card-text">Status: {{book.status}}</p>
+    <p class="card-text" *ngIf="book.borrowedBy">Borrowed by: {{book.borrowedBy}}</p>
+    <div class="d-flex">
+      <input type="email" #f class="borrow-input" placeholder="Enter your email address" required
+        (click)="$event.stopPropagation();">
+      <button class="btn btn-primary" (click)="change_book(f, book.ID); $event.stopPropagation();">{{book.status ==
+        'available'?'Borrow':'Return'}}</button>
+    </div>
+    <button class="btn btn-secondary w-100 mt-2" (click)="showDetails(book)">View Details</button>
+  </div>
+</div>
+
+<div class="modal fade show" tabindex="-1" #displayBook>
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{viewBookDetails?.title}}</h5>
+        <button type="button" class="btn btn-md btn-close" (click)="closeDialog()">X</button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-4">
+            <img [src]="viewBookDetails?.image" class="img-fluid" alt="Book Cover">
+          </div>
+          <div class="col-md-8">
+            <p><strong>Author:</strong> {{viewBookDetails?.author}}</p>
+            <p><strong>Publish Date:</strong> {{viewBookDetails?.publish_date}}</p>
+            <p><strong>Status:</strong> {{viewBookDetails?.status}}</p>
+            <p><strong>Borrowed By:</strong> {{viewBookDetails?.borrowedBy}}</p>
+            <p><strong>Category:</strong> {{viewBookDetails?.category}}</p>
+            <p><strong>Owned By:</strong> {{viewBookDetails?.contact}}</p>
+            <p><strong>Phone:</strong> {{viewBookDetails?.phone}}</p>
+            <p><strong>Email:</strong> {{viewBookDetails?.email}}</p>
+            <p style="word-wrap: break-word;"><strong>Abstract:</strong> {{viewBookDetails?.abstract}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeDialog()">Close</button>
+      </div>
+    </div>
+  </div>
+ </div>
